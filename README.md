@@ -349,7 +349,7 @@ const PORT = process.env.PORT || 8080;
 
 ## 👥 Contributors
 
-**Developer:** Fred Ochieng
+**Developer:** ICL
 **Organization:** ESPEN/WHO AFRO
 **Purpose:** Preventive Chemotherapy Quantification
 
@@ -384,4 +384,3 @@ vercel --prod
 
 ---
 
-**Built with ❤️ for Global Health**
