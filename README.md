@@ -1,6 +1,6 @@
 # Nigeria Schistosomiasis Supply Chain Analytics Platform
 
-**An integrated Node.js web application for preventive chemotherapy quantification with ARIMA forecasting**
+**An integrated Node.js web application for preventive chemotherapy quantification**
 
 ---
 
@@ -8,36 +8,36 @@
 
 This platform provides comprehensive supply chain analytics and forecasting for Nigeria's schistosomiasis control programme, featuring:
 
-- **ARIMA Forecasting**: Predictive modeling of future supply needs (2025-2027)
+<!-- - **ARIMA Forecasting**: Predictive modeling of future supply needs (2025-2027) -->
 - **Supply-Demand Matching**: Real-time integration of procurement and treatment data
 - **Interactive Geospatial Visualization**: Choropleth maps showing endemicity and coverage
 - **Data-Driven Insights**: KPIs, trends, and strategic recommendations
 
 ## 📊 Key Features
 
-### 1. **Supply Chain Snapshot**
+<!-- ### 1. **Supply Chain Snapshot**
 - ARIMA(1,1,1) supply forecasting model
 - Lead time analysis and procurement tracking
 - Supply adequacy metrics and gap analysis
-- Real-time procurement order monitoring
+- Real-time procurement order monitoring -->
 
-### 2. **National Dashboard**
+### 1. **National Dashboard**
 - Treatment coverage trends (2020-2024)
 - Endemicity distribution across 774 LGAs
 - Population-level metrics and KPIs
 - State-level priority analysis
 
-### 3. **Interactive Map View**
+### 2. **Interactive Map View**
 - Leaflet-based choropleth mapping
 - Multi-layer visualization (endemicity, coverage, priority)
 - Click-through LGA details
 - Real-time data tooltips
 
-### 4. **Forecast Analysis**
+<!-- ### 3. **Forecast Analysis**
 - 3-year supply and demand projections
 - Confidence intervals and scenario planning
 - Strategic recommendations based on forecasts
-- Detailed forecast breakdowns
+- Detailed forecast breakdowns -->
 
 ## 🔧 Technical Stack
 
@@ -48,8 +48,8 @@ This platform provides comprehensive supply chain analytics and forecasting for 
 **Data Processing:**
 - Python 3.12 with pandas, numpy
 - GeoPandas for geospatial processing
-- Statsmodels for ARIMA forecasting
-- Scikit-learn for trend analysis
+<!-- - Statsmodels for ARIMA forecasting
+- Scikit-learn for trend analysis -->
 
 **Frontend:**
 - HTML5, CSS3 (ESPEN-themed)
@@ -70,9 +70,7 @@ nigeria-sch-supply-chain/
 ├── data/
 │   ├── demand_data.json              # Processed ESPEN data
 │   ├── supply_data.json              # Procurement orders
-│   ├── supply_demand_integrated.json # Annual matching
-│   ├── supply_forecast.json          # ARIMA forecast (2025-2027)
-│   ├── demand_forecast.json          # Demand projection
+│   ├── supply_demand_integrated.json # Annual projection
 │   ├── nigeria_iu_geojson.json       # IU-level boundaries + data
 │   ├── nigeria_states_geojson.json   # State-level aggregation
 │   ├── supply_chain_metrics.json     # KPIs
@@ -119,8 +117,8 @@ This will:
 - Load ESPEN SCH data (demand side)
 - Load NTDeliver procurement orders (supply side)
 - Integrate supply and demand by year
-- Run ARIMA forecasting for supply (2025-2027)
-- Generate demand forecasts using trend analysis
+<!-- - Run ARIMA forecasting for supply (2025-2027)
+- Generate demand forecasts using trend analysis -->
 - Convert shapefiles to GeoJSON
 - Calculate all metrics and indicators
 
@@ -147,7 +145,7 @@ Raw Data Sources
       ↓
   [Python ETL]
   - Data cleaning
-  - ARIMA forecasting
+  <!-- - ARIMA forecasting -->
   - Geospatial conversion
   - Metric calculation
       ↓
@@ -162,7 +160,7 @@ Raw Data Sources
   - Forecasts
 ```
 
-## 🔍 ARIMA Forecasting Methodology
+<!-- ## 🔍 ARIMA Forecasting Methodology
 
 **Model:** ARIMA(1,1,1)
 
@@ -182,7 +180,7 @@ Raw Data Sources
 **Model Validation:**
 - ADF test for stationarity
 - AIC and BIC for model selection
-- Visual inspection of residuals
+- Visual inspection of residuals -->
 
 ## 📈 Key Metrics
 
@@ -221,7 +219,7 @@ Raw Data Sources
 
 ### Supply Chain
 - `GET /api/supply-chain/metrics` - Overall KPIs
-- `GET /api/supply/forecast` - ARIMA forecast
+<!-- - `GET /api/supply/forecast` - ARIMA forecast -->
 - `GET /api/procurement/orders?year=2024` - PO details
 - `GET /api/supply-chain/lead-times` - Lead time analysis
 
@@ -284,11 +282,11 @@ Update `process_supply_chain_data.py` to include new data years and re-run:
 python3 process_supply_chain_data.py
 ```
 
-### Modifying Forecasts
+<!-- ### Modifying Forecasts
 Adjust ARIMA parameters in the script:
 ```python
 model = ARIMA(ts_data['quantity'], order=(p, d, q))
-```
+``` -->
 
 ### Changing Map Layers
 Edit `map.html` layer definitions:
@@ -308,7 +306,7 @@ const layerSelector = document.getElementById('layerSelector');
   "recent3YearsSupply": 77616000
 }
 ```
-
+<!-- 
 ### ARIMA Forecast
 ```json
 [
@@ -320,7 +318,7 @@ const layerSelector = document.getElementById('layerSelector');
     "method": "ARIMA(1,1,1)"
   }
 ]
-```
+``` -->
 
 ## 🐛 Troubleshooting
 
@@ -347,7 +345,7 @@ const PORT = process.env.PORT || 8080;
 - WHO Schistosomiasis Treatment Guidelines
 - ESPEN Data Portal: https://espen.afro.who.int/
 - NTDeliver: https://www.ntdeliver.com/
-- ARIMA Forecasting: Box-Jenkins methodology
+<!-- - ARIMA Forecasting: Box-Jenkins methodology -->
 
 ## 👥 Contributors
 
