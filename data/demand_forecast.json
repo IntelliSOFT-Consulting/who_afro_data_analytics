@@ -1,0 +1,23 @@
+[
+  {
+    "year":2025,
+    "forecastDemand":45941506,
+    "lowerBound":41347355,
+    "upperBound":50535657,
+    "method":"Linear Trend"
+  },
+  {
+    "year":2026,
+    "forecastDemand":45677958,
+    "lowerBound":41110162,
+    "upperBound":50245754,
+    "method":"Linear Trend"
+  },
+  {
+    "year":2027,
+    "forecastDemand":45414410,
+    "lowerBound":40872969,
+    "upperBound":49955851,
+    "method":"Linear Trend"
+  }
+]

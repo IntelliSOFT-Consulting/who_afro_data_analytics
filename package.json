@@ -1,0 +1,27 @@
+{
+  "name": "nigeria-sch-supply-chain",
+  "version": "1.0.0",
+  "description": "Nigeria Schistosomiasis Supply Chain Analytics with ARIMA Forecasting",
+  "main": "server/app.js",
+  "scripts": {
+    "start": "node server/app.js",
+    "dev": "nodemon server/app.js"
+  },
+  "keywords": [
+    "schistosomiasis",
+    "supply-chain",
+    "forecasting",
+    "ARIMA",
+    "Nigeria",
+    "ESPEN"
+  ],
+  "author": "Fred Ochieng",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

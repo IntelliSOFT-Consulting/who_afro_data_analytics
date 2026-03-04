@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geographic Map | Nigeria SCH Control</title>
+    
+    <link rel="stylesheet" href="/css/espen-theme.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <style>
+        #map {
+            height: 700px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        
+        .legend {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .legend h4 {
+            margin: 0 0 0.5rem 0;
+            color: #0056A4;
+            font-size: 0.9rem;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .legend-color {
+            width: 30px;
+            height: 20px;
+            margin-right: 0.5rem;
+            border: 1px solid #ccc;
+        }
+        
+        .info-panel {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 1rem;
+        }
+        
+        .leaflet-popup-content {
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <strong>ESPEN</strong> | Nigeria SCH Supply Chain
+            </a>
+            <ul class="navbar-nav">
+                <li><a class="nav-link" href="/">Dashboard</a></li>
+                <!-- <li><a class="nav-link" href="/supply-chain">Supply Chain</a></li> -->
+                <li><a class="nav-link active" href="/map">Map View</a></li>
+                <!-- <li><a class="nav-link" href="/forecast">Forecast Analysis</a></li> -->
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="container">
+            <h1>Geographic Distribution Map</h1>
+            <p class="lead">Schistosomiasis endemicity and coverage across Nigeria</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Controls -->
+        <div class="row mb-4">
+            <div class="col-6">
+                <div class="info-panel">
+                    <label class="form-label">Map Layer:</label>
+                    <select id="layerSelector" class="form-select">
+                        <option value="endemicity">Endemicity Level</option>
+                        <option value="coverage">Treatment Coverage</option>
+                        <option value="priority">Priority Score</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="info-panel">
+                    <strong>Selected Region:</strong>
+                    <div id="selectedInfo" style="margin-top: 0.5rem; color: #666;">
+                        Click on a region to view details
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Map -->
+        <div class="row">
+            <div class="col-12">
+                <div id="map"></div>
+            </div>
+        </div>
+
+        <!-- Statistics -->
+        <div class="row mt-4">
+            <div class="col-3">
+                <div class="kpi-card">
+                    <div class="kpi-value" id="totalLGAs">774</div>
+                    <div class="kpi-label">Total LGAs</div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="kpi-card">
+                    <div class="kpi-value" id="highPrev">-</div>
+                    <div class="kpi-label">High Prevalence LGAs</div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="kpi-card">
+                    <div class="kpi-value" id="lowCoverage">-</div>
+                    <div class="kpi-label">LGAs Below 75% Coverage</div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="kpi-card">
+                    <div class="kpi-value" id="avgCoverage">-</div>
+                    <div class="kpi-label">National Avg Coverage</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let map, geojsonLayer, geoData;
+        let currentLayer = 'endemicity';
+
+        async function init() {
+            await loadGeoData();
+            initializeMap();
+            updateStatistics();
+        }
+
+        async function loadGeoData() {
+            const response = await fetch('/api/geo/nigeria-iu');
+            geoData = await response.json();
+        }
+
+        function initializeMap() {
+            // Initialize map centered on Nigeria
+            map = L.map('map').setView([9.0820, 8.6753], 6);
+
+            // Add base tile layer
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors',
+                maxZoom: 10,
+                minZoom: 5
+            }).addTo(map);
+
+            // Add GeoJSON layer
+            renderGeoJSON();
+
+            // Add legend
+            addLegend();
+        }
+
+        function renderGeoJSON() {
+            if (geojsonLayer) {
+                map.removeLayer(geojsonLayer);
+            }
+
+            geojsonLayer = L.geoJSON(geoData, {
+                style: styleFeature,
+                onEachFeature: onEachFeature
+            }).addTo(map);
+        }
+
+        function styleFeature(feature) {
+            const props = feature.properties;
+            let fillColor, fillOpacity = 0.7;
+
+            if (currentLayer === 'endemicity') {
+                const endemicityColors = {
+                    'High prevalence (50% and above)': '#DC3545',
+                    'Moderate prevalence (10%-49%)': '#FFC107',
+                    'Low prevalence (less than 10%)': '#28A745',
+                    'Non-endemic': '#6C757D'
+                };
+                fillColor = endemicityColors[props.endemicity] || '#CCCCCC';
+            } else if (currentLayer === 'coverage') {
+                const cov = props.cov || 0;
+                if (cov >= 75) fillColor = '#28A745';
+                else if (cov >= 50) fillColor = '#FFC107';
+                else if (cov >= 25) fillColor = '#FF6B35';
+                else fillColor = '#DC3545';
+            } else if (currentLayer === 'priority') {
+                const priority = props.priorityScore || 0;
+                if (priority >= 75) fillColor = '#DC3545';
+                else if (priority >= 50) fillColor = '#FF6B35';
+                else if (priority >= 25) fillColor = '#FFC107';
+                else fillColor = '#28A745';
+            }
+
+            return {
+                fillColor: fillColor,
+                weight: 1,
+                opacity: 1,
+                color: 'white',
+                fillOpacity: fillOpacity
+            };
+        }
+
+        function onEachFeature(feature, layer) {
+            const props = feature.properties;
+            
+            // Popup content
+            const popupContent = `
+                <div style="min-width: 200px;">
+                    <h4 style="margin: 0 0 0.5rem 0; color: #0056A4;">${props.IUs_NAME || props.ADMIN2}</h4>
+                    <strong>State:</strong> ${props.ADMIN1}<br>
+                    <strong>Endemicity:</strong> ${props.endemicity || 'N/A'}<br>
+                    <strong>Coverage:</strong> ${(props.cov || 0).toFixed(1)}%<br>
+                    <strong>Population Requiring PC:</strong> ${formatNumber(props.popReq || 0)}<br>
+                    <strong>Priority Score:</strong> ${(props.priorityScore || 0).toFixed(1)}
+                </div>
+            `;
+            
+            layer.bindPopup(popupContent);
+
+            // Hover effects
+            layer.on({
+                mouseover: highlightFeature,
+                mouseout: resetHighlight,
+                click: selectFeature
+            });
+        }
+
+        function highlightFeature(e) {
+            const layer = e.target;
+            layer.setStyle({
+                weight: 3,
+                color: '#0056A4',
+                fillOpacity: 0.9
+            });
+            layer.bringToFront();
+        }
+
+        function resetHighlight(e) {
+            geojsonLayer.resetStyle(e.target);
+        }
+
+        function selectFeature(e) {
+            const props = e.target.feature.properties;
+            document.getElementById('selectedInfo').innerHTML = `
+                <strong>${props.IUs_NAME || props.ADMIN2}</strong><br>
+                State: ${props.ADMIN1}<br>
+                Endemicity: ${props.endemicity || 'N/A'}<br>
+                Coverage: ${(props.cov || 0).toFixed(1)}%
+            `;
+        }
+
+        function addLegend() {
+            const legend = L.control({position: 'bottomright'});
+
+            legend.onAdd = function(map) {
+                const div = L.DomUtil.create('div', 'legend');
+                updateLegendContent(div);
+                return div;
+            };
+
+            legend.addTo(map);
+        }
+
+        function updateLegendContent(div) {
+            let html = '<h4>Legend</h4>';
+
+            if (currentLayer === 'endemicity') {
+                html += `
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #DC3545;"></div>
+                        <span>High (≥50%)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #FFC107;"></div>
+                        <span>Moderate (10-49%)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #28A745;"></div>
+                        <span>Low (<10%)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #6C757D;"></div>
+                        <span>Non-endemic</span>
+                    </div>
+                `;
+            } else if (currentLayer === 'coverage') {
+                html += `
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #28A745;"></div>
+                        <span>≥75% (Adequate)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #FFC107;"></div>
+                        <span>50-74%</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #FF6B35;"></div>
+                        <span>25-49%</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #DC3545;"></div>
+                        <span><25% (Critical)</span>
+                    </div>
+                `;
+            } else if (currentLayer === 'priority') {
+                html += `
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #DC3545;"></div>
+                        <span>Very High (≥75)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #FF6B35;"></div>
+                        <span>High (50-74)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #FFC107;"></div>
+                        <span>Medium (25-49)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #28A745;"></div>
+                        <span>Low (<25)</span>
+                    </div>
+                `;
+            }
+
+            div.innerHTML = html;
+        }
+
+        function updateStatistics() {
+            const features = geoData.features;
+            
+            const highPrev = features.filter(f => 
+                f.properties.endemicity === 'High prevalence (50% and above)'
+            ).length;
+            
+            const lowCov = features.filter(f => 
+                (f.properties.cov || 0) < 75
+            ).length;
+            
+            const avgCov = features.reduce((sum, f) => 
+                sum + (f.properties.cov || 0), 0
+            ) / features.length;
+
+            document.getElementById('highPrev').textContent = highPrev;
+            document.getElementById('lowCoverage').textContent = lowCov;
+            document.getElementById('avgCoverage').textContent = avgCov.toFixed(1) + '%';
+        }
+
+        function formatNumber(num) {
+            if (!num) return '0';
+            if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
+            if (num >= 1000) return (num / 1000).toFixed(0) + 'K';
+            return num.toString();
+        }
+
+        // Layer selector change
+        document.getElementById('layerSelector').addEventListener('change', (e) => {
+            currentLayer = e.target.value;
+            renderGeoJSON();
+            
+            // Update legend
+            const legendElement = document.querySelector('.legend');
+            if (legendElement) {
+                updateLegendContent(legendElement);
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>

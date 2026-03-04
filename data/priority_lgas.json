@@ -1,0 +1,1002 @@
+[
+  {
+    "admin2": "Konduga",
+    "admin1": "Borno",
+    "endemicity": "High prevalence (50% and above)",
+    "popReq": 20852,
+    "cov": 0.0,
+    "tabletsNeeded": 59949,
+    "priorityScore": 63.63,
+    "iuId": 36493
+  },
+  {
+    "admin2": "Mobbar",
+    "admin1": "Borno",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 25470,
+    "cov": 0.0,
+    "tabletsNeeded": 73226,
+    "priorityScore": 56.76,
+    "iuId": 36500
+  },
+  {
+    "admin2": "Nganzai",
+    "admin1": "Borno",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 21790,
+    "cov": 0.0,
+    "tabletsNeeded": 62646,
+    "priorityScore": 56.65,
+    "iuId": 36503
+  },
+  {
+    "admin2": "Guzamala",
+    "admin1": "Borno",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 20884,
+    "cov": 0.0,
+    "tabletsNeeded": 60041,
+    "priorityScore": 56.63,
+    "iuId": 36487
+  },
+  {
+    "admin2": "Gwoza",
+    "admin1": "Borno",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 60330,
+    "cov": 0.0,
+    "tabletsNeeded": 173448,
+    "priorityScore": 55.81,
+    "iuId": 36488
+  },
+  {
+    "admin2": "Abeokuta North",
+    "admin1": "Ogun",
+    "endemicity": "High prevalence (50% and above)",
+    "popReq": 87916,
+    "cov": 0.0,
+    "tabletsNeeded": 252758,
+    "priorityScore": 55.64,
+    "iuId": 36900
+  },
+  {
+    "admin2": "Garki",
+    "admin1": "Jigawa",
+    "endemicity": "High prevalence (50% and above)",
+    "popReq": 20275,
+    "cov": 0.0,
+    "tabletsNeeded": 58290,
+    "priorityScore": 55.61,
+    "iuId": 36663
+  },
+  {
+    "admin2": "Ngala",
+    "admin1": "Borno",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 51762,
+    "cov": 0.0,
+    "tabletsNeeded": 148815,
+    "priorityScore": 55.55,
+    "iuId": 36502
+  },
+  {
+    "admin2": "Auyo",
+    "admin1": "Jigawa",
+    "endemicity": "High prevalence (50% and above)",
+    "popReq": 17580,
+    "cov": 0.0,
+    "tabletsNeeded": 50542,
+    "priorityScore": 55.53,
+    "iuId": 36656
+  },
+  {
+    "admin2": "Isoko South",
+    "admin1": "Delta",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 49718,
+    "cov": 0.0,
+    "tabletsNeeded": 142939,
+    "priorityScore": 55.49,
+    "iuId": 36532
+  },
+  {
+    "admin2": "Kukawa",
+    "admin1": "Borno",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 44511,
+    "cov": 0.0,
+    "tabletsNeeded": 127969,
+    "priorityScore": 55.34,
+    "iuId": 36494
+  },
+  {
+    "admin2": "Marte",
+    "admin1": "Borno",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 28246,
+    "cov": 0.0,
+    "tabletsNeeded": 81207,
+    "priorityScore": 54.85,
+    "iuId": 36499
+  },
+  {
+    "admin2": "Bama",
+    "admin1": "Borno",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 22323,
+    "cov": 0.0,
+    "tabletsNeeded": 64178,
+    "priorityScore": 54.67,
+    "iuId": 36480
+  },
+  {
+    "admin2": "Kafin Hausa",
+    "admin1": "Jigawa",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 22411,
+    "cov": 0.0,
+    "tabletsNeeded": 64431,
+    "priorityScore": 54.67,
+    "iuId": 36670
+  },
+  {
+    "admin2": "Adadara(Abadam)",
+    "admin1": "Borno",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 21873,
+    "cov": 0.0,
+    "tabletsNeeded": 62884,
+    "priorityScore": 54.66,
+    "iuId": 36478
+  },
+  {
+    "admin2": "Dutse",
+    "admin1": "Jigawa",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 20351,
+    "cov": 0.0,
+    "tabletsNeeded": 58509,
+    "priorityScore": 54.61,
+    "iuId": 36661
+  },
+  {
+    "admin2": "Ogbia",
+    "admin1": "Bayelsa",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 14876,
+    "cov": 0.0,
+    "tabletsNeeded": 42768,
+    "priorityScore": 54.45,
+    "iuId": 36451
+  },
+  {
+    "admin2": "Kiyawa",
+    "admin1": "Jigawa",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 14297,
+    "cov": 0.0,
+    "tabletsNeeded": 41103,
+    "priorityScore": 54.43,
+    "iuId": 36674
+  },
+  {
+    "admin2": "Kala Balge",
+    "admin1": "Borno",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 13274,
+    "cov": 0.0,
+    "tabletsNeeded": 38162,
+    "priorityScore": 54.4,
+    "iuId": 36492
+  },
+  {
+    "admin2": "Gwiwa",
+    "admin1": "Jigawa",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 10295,
+    "cov": 0.0,
+    "tabletsNeeded": 29598,
+    "priorityScore": 54.31,
+    "iuId": 36667
+  },
+  {
+    "admin2": "Guri",
+    "admin1": "Jigawa",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 9510,
+    "cov": 0.0,
+    "tabletsNeeded": 27341,
+    "priorityScore": 54.29,
+    "iuId": 36665
+  },
+  {
+    "admin2": "Yankwashi",
+    "admin1": "Jigawa",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 7917,
+    "cov": 0.0,
+    "tabletsNeeded": 22761,
+    "priorityScore": 54.24,
+    "iuId": 36682
+  },
+  {
+    "admin2": "Roni",
+    "admin1": "Jigawa",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 6434,
+    "cov": 0.0,
+    "tabletsNeeded": 18497,
+    "priorityScore": 54.19,
+    "iuId": 36679
+  },
+  {
+    "admin2": "Egbado North",
+    "admin1": "Ogun",
+    "endemicity": "High prevalence (50% and above)",
+    "popReq": 24216,
+    "cov": 0.0,
+    "tabletsNeeded": 69621,
+    "priorityScore": 53.73,
+    "iuId": 36903
+  },
+  {
+    "admin2": "Ifedore",
+    "admin1": "Ondo",
+    "endemicity": "High prevalence (50% and above)",
+    "popReq": 8893,
+    "cov": 0.0,
+    "tabletsNeeded": 25567,
+    "priorityScore": 53.27,
+    "iuId": 36928
+  },
+  {
+    "admin2": "Birinwa",
+    "admin1": "Jigawa",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 31076,
+    "cov": 0.0,
+    "tabletsNeeded": 89343,
+    "priorityScore": 52.93,
+    "iuId": 36659
+  },
+  {
+    "admin2": "Monguno",
+    "admin1": "Borno",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 23984,
+    "cov": 0.0,
+    "tabletsNeeded": 68954,
+    "priorityScore": 52.72,
+    "iuId": 36501
+  },
+  {
+    "admin2": "Dikwa",
+    "admin1": "Borno",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 23124,
+    "cov": 0.0,
+    "tabletsNeeded": 66481,
+    "priorityScore": 52.69,
+    "iuId": 36485
+  },
+  {
+    "admin2": "Oshogbo",
+    "admin1": "Osun",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 12955,
+    "cov": 0.0,
+    "tabletsNeeded": 37245,
+    "priorityScore": 52.39,
+    "iuId": 36966
+  },
+  {
+    "admin2": "Odo-Otin",
+    "admin1": "Osun",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 11088,
+    "cov": 0.0,
+    "tabletsNeeded": 31877,
+    "priorityScore": 52.33,
+    "iuId": 36962
+  },
+  {
+    "admin2": "Damboa",
+    "admin1": "Borno",
+    "endemicity": "High prevalence (50% and above)",
+    "popReq": 30842,
+    "cov": 30.5,
+    "tabletsNeeded": 88670,
+    "priorityScore": 52.3,
+    "iuId": 36484
+  },
+  {
+    "admin2": "Isokan",
+    "admin1": "Osun",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 8530,
+    "cov": 0.0,
+    "tabletsNeeded": 24523,
+    "priorityScore": 52.26,
+    "iuId": 36959
+  },
+  {
+    "admin2": "Ifelodun",
+    "admin1": "Osun",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 7999,
+    "cov": 0.0,
+    "tabletsNeeded": 22997,
+    "priorityScore": 52.24,
+    "iuId": 36953
+  },
+  {
+    "admin2": "Ede North",
+    "admin1": "Osun",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 6931,
+    "cov": 0.0,
+    "tabletsNeeded": 19926,
+    "priorityScore": 52.21,
+    "iuId": 36944
+  },
+  {
+    "admin2": "Aijedire",
+    "admin1": "Osun",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 6271,
+    "cov": 0.0,
+    "tabletsNeeded": 18029,
+    "priorityScore": 52.19,
+    "iuId": 36939
+  },
+  {
+    "admin2": "Gwaram",
+    "admin1": "Jigawa",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 59515,
+    "cov": 0.0,
+    "tabletsNeeded": 171105,
+    "priorityScore": 51.79,
+    "iuId": 36666
+  },
+  {
+    "admin2": "Jahun",
+    "admin1": "Jigawa",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 50020,
+    "cov": 0.0,
+    "tabletsNeeded": 143807,
+    "priorityScore": 51.5,
+    "iuId": 36669
+  },
+  {
+    "admin2": "Babure",
+    "admin1": "Jigawa",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 45436,
+    "cov": 0.0,
+    "tabletsNeeded": 130628,
+    "priorityScore": 51.36,
+    "iuId": 36657
+  },
+  {
+    "admin2": "Maigatari",
+    "admin1": "Jigawa",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 39238,
+    "cov": 0.0,
+    "tabletsNeeded": 112809,
+    "priorityScore": 51.18,
+    "iuId": 36675
+  },
+  {
+    "admin2": "Sule-Tankarkar",
+    "admin1": "Jigawa",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 28569,
+    "cov": 0.0,
+    "tabletsNeeded": 82135,
+    "priorityScore": 50.86,
+    "iuId": 36680
+  },
+  {
+    "admin2": "Birinin Kudu",
+    "admin1": "Jigawa",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 25910,
+    "cov": 0.0,
+    "tabletsNeeded": 74491,
+    "priorityScore": 50.78,
+    "iuId": 36658
+  },
+  {
+    "admin2": "Fune",
+    "admin1": "Yobe",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 24867,
+    "cov": 0.0,
+    "tabletsNeeded": 71492,
+    "priorityScore": 50.75,
+    "iuId": 37084
+  },
+  {
+    "admin2": "Ife East",
+    "admin1": "Osun",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 15551,
+    "cov": 0.0,
+    "tabletsNeeded": 44709,
+    "priorityScore": 50.47,
+    "iuId": 36949
+  },
+  {
+    "admin2": "Irepodun",
+    "admin1": "Osun",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 9880,
+    "cov": 0.0,
+    "tabletsNeeded": 28404,
+    "priorityScore": 50.3,
+    "iuId": 36957
+  },
+  {
+    "admin2": "Ondo East",
+    "admin1": "Ondo",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 6181,
+    "cov": 0.0,
+    "tabletsNeeded": 17770,
+    "priorityScore": 50.19,
+    "iuId": 36934
+  },
+  {
+    "admin2": "Ola-Oluwa",
+    "admin1": "Osun",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 6332,
+    "cov": 0.0,
+    "tabletsNeeded": 18204,
+    "priorityScore": 50.19,
+    "iuId": 36963
+  },
+  {
+    "admin2": "Machina",
+    "admin1": "Yobe",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 5093,
+    "cov": 0.0,
+    "tabletsNeeded": 14642,
+    "priorityScore": 50.15,
+    "iuId": 37090
+  },
+  {
+    "admin2": "Ebonyi",
+    "admin1": "Ebonyi",
+    "endemicity": "High prevalence (50% and above)",
+    "popReq": 16893,
+    "cov": 30.5,
+    "tabletsNeeded": 48567,
+    "priorityScore": 49.88,
+    "iuId": 36551
+  },
+  {
+    "admin2": "Takum",
+    "admin1": "Taraba",
+    "endemicity": "High prevalence (50% and above)",
+    "popReq": 6826,
+    "cov": 6.21,
+    "tabletsNeeded": 19624,
+    "priorityScore": 49.65,
+    "iuId": 37075
+  },
+  {
+    "admin2": "Obafemi-Owode",
+    "admin1": "Ogun",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 49967,
+    "cov": 0.0,
+    "tabletsNeeded": 143655,
+    "priorityScore": 49.5,
+    "iuId": 36914
+  },
+  {
+    "admin2": "Rano",
+    "admin1": "Kano",
+    "endemicity": "High prevalence (50% and above)",
+    "popReq": 19370,
+    "cov": 32.49,
+    "tabletsNeeded": 55688,
+    "priorityScore": 49.46,
+    "iuId": 36737
+  },
+  {
+    "admin2": "Ohaukwu",
+    "admin1": "Ebonyi",
+    "endemicity": "High prevalence (50% and above)",
+    "popReq": 26149,
+    "cov": 33.41,
+    "tabletsNeeded": 75178,
+    "priorityScore": 49.43,
+    "iuId": 36559
+  },
+  {
+    "admin2": "Egbado South",
+    "admin1": "Ogun",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 36866,
+    "cov": 0.0,
+    "tabletsNeeded": 105989,
+    "priorityScore": 49.11,
+    "iuId": 36904
+  },
+  {
+    "admin2": "Kazaure",
+    "admin1": "Jigawa",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 35260,
+    "cov": 0.0,
+    "tabletsNeeded": 101372,
+    "priorityScore": 49.06,
+    "iuId": 36672
+  },
+  {
+    "admin2": "Kura",
+    "admin1": "Kano",
+    "endemicity": "High prevalence (50% and above)",
+    "popReq": 19259,
+    "cov": 34.26,
+    "tabletsNeeded": 55369,
+    "priorityScore": 49.01,
+    "iuId": 36732
+  },
+  {
+    "admin2": "Akure South",
+    "admin1": "Ondo",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 29204,
+    "cov": 0.0,
+    "tabletsNeeded": 83961,
+    "priorityScore": 48.88,
+    "iuId": 36925
+  },
+  {
+    "admin2": "Kaugama",
+    "admin1": "Jigawa",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 27938,
+    "cov": 0.0,
+    "tabletsNeeded": 80321,
+    "priorityScore": 48.84,
+    "iuId": 36671
+  },
+  {
+    "admin2": "Gagarawa",
+    "admin1": "Jigawa",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 17553,
+    "cov": 0.0,
+    "tabletsNeeded": 50464,
+    "priorityScore": 48.53,
+    "iuId": 36662
+  },
+  {
+    "admin2": "Jema'a",
+    "admin1": "Kaduna",
+    "endemicity": "High prevalence (50% and above)",
+    "popReq": 37124,
+    "cov": 30.5,
+    "tabletsNeeded": 106731,
+    "priorityScore": 48.49,
+    "iuId": 36689
+  },
+  {
+    "admin2": "Odeda",
+    "admin1": "Ogun",
+    "endemicity": "High prevalence (50% and above)",
+    "popReq": 47794,
+    "cov": 0.0,
+    "tabletsNeeded": 137407,
+    "priorityScore": 48.43,
+    "iuId": 36915
+  },
+  {
+    "admin2": "Ile-Oluji-Okegbo",
+    "admin1": "Ondo",
+    "endemicity": "High prevalence (50% and above)",
+    "popReq": 8718,
+    "cov": 11.55,
+    "tabletsNeeded": 25064,
+    "priorityScore": 48.37,
+    "iuId": 36930
+  },
+  {
+    "admin2": "Mokwa",
+    "admin1": "Niger",
+    "endemicity": "High prevalence (50% and above)",
+    "popReq": 32622,
+    "cov": 30.5,
+    "tabletsNeeded": 93788,
+    "priorityScore": 48.35,
+    "iuId": 36891
+  },
+  {
+    "admin2": "Jakusko",
+    "admin1": "Yobe",
+    "endemicity": "High prevalence (50% and above)",
+    "popReq": 30511,
+    "cov": 30.5,
+    "tabletsNeeded": 87719,
+    "priorityScore": 48.29,
+    "iuId": 37088
+  },
+  {
+    "admin2": "Lamurde",
+    "admin1": "Adamawa",
+    "endemicity": "High prevalence (50% and above)",
+    "popReq": 15023,
+    "cov": 36.85,
+    "tabletsNeeded": 43191,
+    "priorityScore": 48.24,
+    "iuId": 36362
+  },
+  {
+    "admin2": "Mashegu",
+    "admin1": "Niger",
+    "endemicity": "High prevalence (50% and above)",
+    "popReq": 28638,
+    "cov": 30.5,
+    "tabletsNeeded": 82334,
+    "priorityScore": 48.23,
+    "iuId": 36890
+  },
+  {
+    "admin2": "Onicha",
+    "admin1": "Ebonyi",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 19581,
+    "cov": 25.49,
+    "tabletsNeeded": 56295,
+    "priorityScore": 48.21,
+    "iuId": 36560
+  },
+  {
+    "admin2": "Mariga",
+    "admin1": "Niger",
+    "endemicity": "High prevalence (50% and above)",
+    "popReq": 26561,
+    "cov": 30.5,
+    "tabletsNeeded": 76362,
+    "priorityScore": 48.17,
+    "iuId": 36889
+  },
+  {
+    "admin2": "Malumfashi",
+    "admin1": "Katsina",
+    "endemicity": "High prevalence (50% and above)",
+    "popReq": 24362,
+    "cov": 30.5,
+    "tabletsNeeded": 70040,
+    "priorityScore": 48.11,
+    "iuId": 36774
+  },
+  {
+    "admin2": "Atisho",
+    "admin1": "Oyo",
+    "endemicity": "High prevalence (50% and above)",
+    "popReq": 5587,
+    "cov": 28.27,
+    "tabletsNeeded": 16062,
+    "priorityScore": 48.1,
+    "iuId": 36971
+  },
+  {
+    "admin2": "Ezza North",
+    "admin1": "Ebonyi",
+    "endemicity": "High prevalence (50% and above)",
+    "popReq": 19394,
+    "cov": 30.5,
+    "tabletsNeeded": 55757,
+    "priorityScore": 47.96,
+    "iuId": 36552
+  },
+  {
+    "admin2": "Bade",
+    "admin1": "Yobe",
+    "endemicity": "High prevalence (50% and above)",
+    "popReq": 18617,
+    "cov": 30.5,
+    "tabletsNeeded": 53523,
+    "priorityScore": 47.93,
+    "iuId": 37080
+  },
+  {
+    "admin2": "Gwer West",
+    "admin1": "Benue",
+    "endemicity": "High prevalence (50% and above)",
+    "popReq": 16268,
+    "cov": 30.5,
+    "tabletsNeeded": 46770,
+    "priorityScore": 47.86,
+    "iuId": 36462
+  },
+  {
+    "admin2": "Kacha",
+    "admin1": "Kaduna",
+    "endemicity": "High prevalence (50% and above)",
+    "popReq": 32534,
+    "cov": 32.67,
+    "tabletsNeeded": 93535,
+    "priorityScore": 47.81,
+    "iuId": 36690
+  },
+  {
+    "admin2": "Abeokuta South",
+    "admin1": "Ogun",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 54645,
+    "cov": 0.0,
+    "tabletsNeeded": 157104,
+    "priorityScore": 47.64,
+    "iuId": 36901
+  },
+  {
+    "admin2": "Tudun Wada",
+    "admin1": "Kano",
+    "endemicity": "High prevalence (50% and above)",
+    "popReq": 30865,
+    "cov": 33.86,
+    "tabletsNeeded": 88736,
+    "priorityScore": 47.46,
+    "iuId": 36746
+  },
+  {
+    "admin2": "Tofa",
+    "admin1": "Kano",
+    "endemicity": "High prevalence (50% and above)",
+    "popReq": 13016,
+    "cov": 31.98,
+    "tabletsNeeded": 37421,
+    "priorityScore": 47.4,
+    "iuId": 36744
+  },
+  {
+    "admin2": "Otorkpo",
+    "admin1": "Benue",
+    "endemicity": "High prevalence (50% and above)",
+    "popReq": 34850,
+    "cov": 34.93,
+    "tabletsNeeded": 100193,
+    "priorityScore": 47.31,
+    "iuId": 36473
+  },
+  {
+    "admin2": "Kiri Kasama",
+    "admin1": "Jigawa",
+    "endemicity": "Moderate prevalence (10%-49%)",
+    "popReq": 41817,
+    "cov": 0.0,
+    "tabletsNeeded": 120223,
+    "priorityScore": 47.25,
+    "iuId": 36673
+  },
+  {
+    "admin2": "Dan Musa",
+    "admin1": "Katsina",
+    "endemicity": "High prevalence (50% and above)",
+    "popReq": 15142,
+    "cov": 32.92,
+    "tabletsNeeded": 43533,
+    "priorityScore": 47.22,
+    "iuId": 36756
+  },
+  {
+    "admin2": "Demsa",
+    "admin1": "Adamawa",
+    "endemicity": "High prevalence (50% and above)",
+    "popReq": 24007,
+    "cov": 34.36,
+    "tabletsNeeded": 69020,
+    "priorityScore": 47.13,
+    "iuId": 36354
+  },
+  {
+    "admin2": "Kabo",
+    "admin1": "Kano",
+    "endemicity": "High prevalence (50% and above)",
+    "popReq": 20488,
+    "cov": 34.2,
+    "tabletsNeeded": 58902,
+    "priorityScore": 47.06,
+    "iuId": 36725
+  },
+  {
+    "admin2": "Ningi",
+    "admin1": "Bauchi",
+    "endemicity": "High prevalence (50% and above)",
+    "popReq": 51566,
+    "cov": 38.12,
+    "tabletsNeeded": 148252,
+    "priorityScore": 47.02,
+    "iuId": 36441
+  },
+  {
+    "admin2": "Aba South",
+    "admin1": "Abia",
+    "endemicity": "Low prevalence (less than 10%)",
+    "popReq": 0,
+    "cov": 0.0,
+    "tabletsNeeded": 0,
+    "priorityScore": 47.0,
+    "iuId": 36338
+  },
+  {
+    "admin2": "Bende",
+    "admin1": "Abia",
+    "endemicity": "Low prevalence (less than 10%)",
+    "popReq": 0,
+    "cov": 0.0,
+    "tabletsNeeded": 0,
+    "priorityScore": 47.0,
+    "iuId": 36340
+  },
+  {
+    "admin2": "Isiala-Ngwa South",
+    "admin1": "Abia",
+    "endemicity": "Low prevalence (less than 10%)",
+    "popReq": 0,
+    "cov": 0.0,
+    "tabletsNeeded": 0,
+    "priorityScore": 47.0,
+    "iuId": 36343
+  },
+  {
+    "admin2": "Isiukwuato",
+    "admin1": "Abia",
+    "endemicity": "Low prevalence (less than 10%)",
+    "popReq": 0,
+    "cov": 0.0,
+    "tabletsNeeded": 0,
+    "priorityScore": 47.0,
+    "iuId": 36344
+  },
+  {
+    "admin2": "Ohafia",
+    "admin1": "Abia",
+    "endemicity": "Low prevalence (less than 10%)",
+    "popReq": 0,
+    "cov": 0.0,
+    "tabletsNeeded": 0,
+    "priorityScore": 47.0,
+    "iuId": 36346
+  },
+  {
+    "admin2": "Osisioma Ngwa",
+    "admin1": "Abia",
+    "endemicity": "Low prevalence (less than 10%)",
+    "popReq": 0,
+    "cov": 0.0,
+    "tabletsNeeded": 0,
+    "priorityScore": 47.0,
+    "iuId": 36347
+  },
+  {
+    "admin2": "Eastern Obolo",
+    "admin1": "Akwa Ibom",
+    "endemicity": "Low prevalence (less than 10%)",
+    "popReq": 0,
+    "cov": 0.0,
+    "tabletsNeeded": 0,
+    "priorityScore": 47.0,
+    "iuId": 36376
+  },
+  {
+    "admin2": "Eket",
+    "admin1": "Akwa Ibom",
+    "endemicity": "Low prevalence (less than 10%)",
+    "popReq": 0,
+    "cov": 0.0,
+    "tabletsNeeded": 0,
+    "priorityScore": 47.0,
+    "iuId": 36377
+  },
+  {
+    "admin2": "Esit Eket",
+    "admin1": "Akwa Ibom",
+    "endemicity": "Low prevalence (less than 10%)",
+    "popReq": 0,
+    "cov": 0.0,
+    "tabletsNeeded": 0,
+    "priorityScore": 47.0,
+    "iuId": 36378
+  },
+  {
+    "admin2": "Etinan",
+    "admin1": "Akwa Ibom",
+    "endemicity": "Low prevalence (less than 10%)",
+    "popReq": 0,
+    "cov": 0.0,
+    "tabletsNeeded": 0,
+    "priorityScore": 47.0,
+    "iuId": 36381
+  },
+  {
+    "admin2": "Ibeno",
+    "admin1": "Akwa Ibom",
+    "endemicity": "Low prevalence (less than 10%)",
+    "popReq": 0,
+    "cov": 0.0,
+    "tabletsNeeded": 0,
+    "priorityScore": 47.0,
+    "iuId": 36382
+  },
+  {
+    "admin2": "Ikot Abasi",
+    "admin1": "Akwa Ibom",
+    "endemicity": "Low prevalence (less than 10%)",
+    "popReq": 0,
+    "cov": 0.0,
+    "tabletsNeeded": 0,
+    "priorityScore": 47.0,
+    "iuId": 36387
+  },
+  {
+    "admin2": "Mbo",
+    "admin1": "Akwa Ibom",
+    "endemicity": "Low prevalence (less than 10%)",
+    "popReq": 0,
+    "cov": 0.0,
+    "tabletsNeeded": 0,
+    "priorityScore": 47.0,
+    "iuId": 36391
+  },
+  {
+    "admin2": "Mkpat Enin",
+    "admin1": "Akwa Ibom",
+    "endemicity": "Low prevalence (less than 10%)",
+    "popReq": 0,
+    "cov": 0.0,
+    "tabletsNeeded": 0,
+    "priorityScore": 47.0,
+    "iuId": 36392
+  },
+  {
+    "admin2": "Nsit Atai",
+    "admin1": "Akwa Ibom",
+    "endemicity": "Low prevalence (less than 10%)",
+    "popReq": 0,
+    "cov": 0.0,
+    "tabletsNeeded": 0,
+    "priorityScore": 47.0,
+    "iuId": 36393
+  },
+  {
+    "admin2": "Nsit Ubiom",
+    "admin1": "Akwa Ibom",
+    "endemicity": "Low prevalence (less than 10%)",
+    "popReq": 0,
+    "cov": 0.0,
+    "tabletsNeeded": 0,
+    "priorityScore": 47.0,
+    "iuId": 36395
+  },
+  {
+    "admin2": "Okobo",
+    "admin1": "Akwa Ibom",
+    "endemicity": "Low prevalence (less than 10%)",
+    "popReq": 0,
+    "cov": 0.0,
+    "tabletsNeeded": 0,
+    "priorityScore": 47.0,
+    "iuId": 36397
+  },
+  {
+    "admin2": "Onna",
+    "admin1": "Akwa Ibom",
+    "endemicity": "Low prevalence (less than 10%)",
+    "popReq": 0,
+    "cov": 0.0,
+    "tabletsNeeded": 0,
+    "priorityScore": 47.0,
+    "iuId": 36398
+  }
+]

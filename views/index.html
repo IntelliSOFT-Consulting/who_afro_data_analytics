@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>National Dashboard | Nigeria SCH Control</title>
+    
+    <link rel="stylesheet" href="/css/espen-theme.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <strong>ESPEN</strong> | Nigeria SCH Supply Chain
+            </a>
+            <ul class="navbar-nav">
+                <li><a class="nav-link active" href="/">Dashboard</a></li>
+                <!-- <li><a class="nav-link" href="/supply-chain">Supply Chain</a></li> -->
+                <li><a class="nav-link" href="/map">Map View</a></li>
+                <!-- <li><a class="nav-link" href="/forecast">Forecast Analysis</a></li> -->
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="container">
+            <h1>National Schistosomiasis Control Dashboard</h1>
+            <p class="lead">Preventive Chemotherapy Programme - Nigeria</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Year Selector -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="yearSelector" class="form-label">Select Year:</label>
+                    <select id="yearSelector" class="form-select" style="max-width: 200px;">
+                        <option value="2024">2024</option>
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <option value="2020">2020</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- KPI Cards -->
+        <div class="row" id="kpiCards">
+            <!-- Will be populated by JavaScript -->
+        </div>
+
+        <!-- Charts Row 1 -->
+        <div class="row">
+            <div class="col-8">
+                <div class="card">
+                    <div class="card-header">Treatment Coverage Trend (2020-2024)</div>
+                    <div class="card-body">
+                        <canvas id="coverageTrendChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-header">Endemicity Distribution</div>
+                    <div class="card-body">
+                        <canvas id="endemicityChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Row 2 -->
+        <div class="row">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">Supply-Demand Balance (2020-2024)</div>
+                    <div class="card-body">
+                        <canvas id="supplyDemandChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">Top 10 Priority States</div>
+                    <div class="card-body">
+                        <canvas id="priorityStatesChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentYear = 2024;
+        let nationalData, coverageTrend, supplyDemand, stateSummary;
+
+        async function init() {
+            await Promise.all([
+                loadNationalData(),
+                loadCoverageTrend(),
+                loadSupplyDemand(),
+                loadStateSummary()
+            ]);
+
+            renderKPIs();
+            renderCoverageTrend();
+            renderEndemicity();
+            renderSupplyDemand();
+            renderPriorityStates();
+        }
+
+        async function loadNationalData() {
+            const response = await fetch(`/api/dashboard/national?year=${currentYear}`);
+            nationalData = await response.json();
+        }
+
+        async function loadCoverageTrend() {
+            const response = await fetch('/api/coverage/trend');
+            coverageTrend = await response.json();
+        }
+
+        async function loadSupplyDemand() {
+            const response = await fetch('/api/supply-demand/historical?startYear=2020&endYear=2024');
+            supplyDemand = await response.json();
+        }
+
+        async function loadStateSummary() {
+            const response = await fetch('/api/states/summary');
+            stateSummary = await response.json();
+        }
+
+        function renderKPIs() {
+            const demand = nationalData.demand;
+            const supply = nationalData.supply;
+            const coverageGap = ((demand.populationRequiring - demand.populationTreated) / demand.populationRequiring * 100).toFixed(1);
+
+            document.getElementById('kpiCards').innerHTML = `
+                <div class="col-3">
+                    <div class="kpi-card">
+                        <div class="kpi-value">${formatLarge(demand.populationRequiring)}</div>
+                        <div class="kpi-label">Population Requiring PC (SAC)</div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="kpi-card">
+                        <div class="kpi-value">${formatLarge(demand.populationTreated)}</div>
+                        <div class="kpi-label">Population Treated</div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="kpi-card">
+                        <div class="kpi-value">${demand.averageCoverage}%</div>
+                        <div class="kpi-label">Average Coverage</div>
+                        <div class="kpi-change ${demand.averageCoverage >= 75 ? 'positive' : 'negative'}">
+                            ${demand.averageCoverage >= 75 ? '✓ Above target' : '⚠️ Below 75% target'}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="kpi-card">
+                        <div class="kpi-value">${supply ? supply.adequacy : 'N/A'}${supply ? '%' : ''}</div>
+                        <div class="kpi-label">Supply Adequacy</div>
+                        ${supply ? `<div class="kpi-change ${supply.adequacy >= 90 ? 'positive' : 'negative'}">
+                            ${supply.supplyGap > 0 ? 'Gap: ' + formatLarge(supply.supplyGap) + ' tablets' : '✓ Adequate supply'}
+                        </div>` : ''}
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderCoverageTrend() {
+            const ctx = document.getElementById('coverageTrendChart').getContext('2d');
+            
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: coverageTrend.map(d => d.year),
+                    datasets: [{
+                        label: 'Coverage (%)',
+                        data: coverageTrend.map(d => d.coverage),
+                        borderColor: '#0056A4',
+                        backgroundColor: 'rgba(0, 86, 164, 0.1)',
+                        tension: 0.3,
+                        fill: true,
+                        pointRadius: 6,
+                        pointHoverRadius: 8
+                    }, {
+                        label: 'Target (75%)',
+                        data: coverageTrend.map(() => 75),
+                        borderColor: '#28A745',
+                        borderDash: [5, 5],
+                        fill: false,
+                        pointRadius: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { position: 'top' }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                callback: value => value + '%'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function renderEndemicity() {
+            const ctx = document.getElementById('endemicityChart').getContext('2d');
+            const endem = nationalData.endemicity;
+
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['High (≥50%)', 'Moderate (10-49%)', 'Low (<10%)', 'Non-endemic'],
+                    datasets: [{
+                        data: [endem.high, endem.moderate, endem.low, endem.nonEndemic],
+                        backgroundColor: ['#DC3545', '#FFC107', '#28A745', '#6C757D']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { position: 'bottom' }
+                    }
+                }
+            });
+        }
+
+        function renderSupplyDemand() {
+            const ctx = document.getElementById('supplyDemandChart').getContext('2d');
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: supplyDemand.map(d => d.year),
+                    datasets: [{
+                        label: 'Demand',
+                        data: supplyDemand.map(d => d.demandTablets),
+                        backgroundColor: 'rgba(0, 86, 164, 0.7)',
+                        borderColor: '#0056A4',
+                        borderWidth: 2
+                    }, {
+                        label: 'Supply',
+                        data: supplyDemand.map(d => d.supplyTablets),
+                        backgroundColor: 'rgba(40, 167, 69, 0.7)',
+                        borderColor: '#28A745',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { position: 'top' }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: value => (value / 1000000).toFixed(0) + 'M'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function renderPriorityStates() {
+            const ctx = document.getElementById('priorityStatesChart').getContext('2d');
+            const top10 = stateSummary
+                .sort((a, b) => b.avgPriority - a.avgPriority)
+                .slice(0, 10);
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: top10.map(s => s.state),
+                    datasets: [{
+                        label: 'Priority Score',
+                        data: top10.map(s => s.avgPriority),
+                        backgroundColor: 'rgba(220, 53, 69, 0.7)',
+                        borderColor: '#DC3545',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        function formatLarge(num) {
+            if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
+            if (num >= 1000) return (num / 1000).toFixed(0) + 'K';
+            return num.toString();
+        }
+
+        document.getElementById('yearSelector').addEventListener('change', (e) => {
+            currentYear = parseInt(e.target.value);
+            init();
+        });
+
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>

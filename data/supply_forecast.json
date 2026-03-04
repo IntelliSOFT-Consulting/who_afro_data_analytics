@@ -1,0 +1,23 @@
+[
+  {
+    "year":2026,
+    "forecastSupply":30087442,
+    "lowerBound":25574325,
+    "upperBound":34600558,
+    "method":"ARIMA(1,1,1)"
+  },
+  {
+    "year":2027,
+    "forecastSupply":30038930,
+    "lowerBound":25533091,
+    "upperBound":34544770,
+    "method":"ARIMA(1,1,1)"
+  },
+  {
+    "year":2028,
+    "forecastSupply":30067826,
+    "lowerBound":25557652,
+    "upperBound":34578000,
+    "method":"ARIMA(1,1,1)"
+  }
+]

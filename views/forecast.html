@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forecast Analysis | Nigeria SCH Control</title>
+    
+    <link rel="stylesheet" href="/css/espen-theme.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <style>
+        .scenario-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        
+        .scenario-card h4 {
+            margin: 0 0 0.5rem 0;
+        }
+        
+        .forecast-table {
+            width: 100%;
+            margin-top: 1rem;
+        }
+        
+        .forecast-table th {
+            background: #E3F2FD;
+            color: #0056A4;
+            padding: 0.75rem;
+            text-align: left;
+        }
+        
+        .forecast-table td {
+            padding: 0.75rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .confidence-band {
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px dashed #667eea;
+            padding: 0.5rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <strong>ESPEN</strong> | Nigeria SCH Supply Chain
+            </a>
+            <ul class="navbar-nav">
+                <li><a class="nav-link" href="/">Dashboard</a></li>
+                <li><a class="nav-link" href="/supply-chain">Supply Chain</a></li>
+                <li><a class="nav-link" href="/map">Map View</a></li>
+                <li><a class="nav-link active" href="/forecast">Forecast Analysis</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="container">
+            <h1>Forecast Analysis & Scenario Planning</h1>
+            <p class="lead">ARIMA-based supply forecasting and demand projections for 2025-2027</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Model Information -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="alert alert-info">
+                    <strong>📊 Forecasting Methodology:</strong> 
+                    Supply forecasts generated using ARIMA(1,1,1) model trained on historical procurement data (2010-2025). 
+                    Demand forecasts based on linear trend analysis of population requiring PC (2020-2024). 
+                    Confidence intervals represent ±15% variation.
+                </div>
+            </div>
+        </div>
+
+        <!-- Forecast Summary Cards -->
+        <div class="row">
+            <div class="col-4">
+                <div class="kpi-card">
+                    <div class="kpi-value" id="forecast2025">-</div>
+                    <div class="kpi-label">2025 Supply Forecast (Tablets)</div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="kpi-card">
+                    <div class="kpi-value" id="forecast2026">-</div>
+                    <div class="kpi-label">2026 Supply Forecast (Tablets)</div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="kpi-card">
+                    <div class="kpi-value" id="forecast2027">-</div>
+                    <div class="kpi-label">2027 Supply Forecast (Tablets)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Forecast Chart -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        3-Year Supply & Demand Forecast with Confidence Intervals
+                    </div>
+                    <div class="card-body">
+                        <canvas id="forecastChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scenario Analysis -->
+        <div class="row">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">Scenario Analysis: Gap Projections</div>
+                    <div class="card-body">
+                        <canvas id="gapScenarioChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">Forecast Accuracy Assessment</div>
+                    <div class="card-body" id="accuracyMetrics">
+                        Loading...
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detailed Forecast Table -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">Detailed Forecast Breakdown</div>
+                    <div class="card-body">
+                        <table class="forecast-table" id="forecastTable">
+                            <thead>
+                                <tr>
+                                    <th>Year</th>
+                                    <th>Demand Forecast</th>
+                                    <th>Supply Forecast</th>
+                                    <th>Projected Gap</th>
+                                    <th>Supply Adequacy</th>
+                                    <th>Confidence Interval</th>
+                                    <th>Recommendation</th>
+                                </tr>
+                            </thead>
+                            <tbody id="forecastTableBody">
+                                <!-- Populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recommendations -->
+        <div class="row">
+            <div class="col-12">
+                <div class="scenario-card">
+                    <h4>📋 Strategic Recommendations Based on Forecast</h4>
+                    <div id="recommendations">Loading...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let supplyForecast, demandForecast, combined;
+
+        async function init() {
+            await Promise.all([
+                loadSupplyForecast(),
+                loadDemandForecast(),
+                loadCombinedForecast()
+            ]);
+
+            renderKPIs();
+            renderForecastChart();
+            renderGapScenario();
+            renderForecastTable();
+            renderAccuracyMetrics();
+            renderRecommendations();
+        }
+
+        async function loadSupplyForecast() {
+            const response = await fetch('/api/supply/forecast');
+            supplyForecast = await response.json();
+        }
+
+        async function loadDemandForecast() {
+            const response = await fetch('/api/demand/forecast');
+            demandForecast = await response.json();
+        }
+
+        async function loadCombinedForecast() {
+            const response = await fetch('/api/forecast/combined');
+            combined = await response.json();
+        }
+
+        function renderKPIs() {
+            document.getElementById('forecast2025').textContent = formatNumber(supplyForecast[0].forecastSupply);
+            document.getElementById('forecast2026').textContent = formatNumber(supplyForecast[1].forecastSupply);
+            document.getElementById('forecast2027').textContent = formatNumber(supplyForecast[2].forecastSupply);
+        }
+
+        function renderForecastChart() {
+            const ctx = document.getElementById('forecastChart').getContext('2d');
+            
+            const historicalYears = combined.historical.map(d => d.year);
+            const forecastYears = combined.forecast.map(d => d.year);
+            const allYears = [...historicalYears, ...forecastYears];
+
+            const historicalDemand = combined.historical.map(d => d.demand);
+            const historicalSupply = combined.historical.map(d => d.supply);
+            const forecastDemand = combined.forecast.map(d => d.demandForecast);
+            const forecastSupply = combined.forecast.map(d => d.supplyForecast);
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: allYears,
+                    datasets: [
+                        {
+                            label: 'Historical Demand',
+                            data: [...historicalDemand, ...new Array(forecastYears.length).fill(null)],
+                            borderColor: '#DC3545',
+                            backgroundColor: 'rgba(220, 53, 69, 0.1)',
+                            borderWidth: 3,
+                            tension: 0.3,
+                            fill: true
+                        },
+                        {
+                            label: 'Historical Supply',
+                            data: [...historicalSupply, ...new Array(forecastYears.length).fill(null)],
+                            borderColor: '#28A745',
+                            backgroundColor: 'rgba(40, 167, 69, 0.1)',
+                            borderWidth: 3,
+                            tension: 0.3,
+                            fill: true
+                        },
+                        {
+                            label: 'Demand Forecast',
+                            data: [...new Array(historicalYears.length).fill(null), ...forecastDemand],
+                            borderColor: '#FF6B9D',
+                            borderDash: [5, 5],
+                            borderWidth: 3,
+                            tension: 0.3,
+                            fill: false
+                        },
+                        {
+                            label: 'Supply Forecast (ARIMA)',
+                            data: [...new Array(historicalYears.length).fill(null), ...forecastSupply],
+                            borderColor: '#4CAF50',
+                            borderDash: [5, 5],
+                            borderWidth: 3,
+                            tension: 0.3,
+                            fill: false
+                        },
+                        {
+                            label: 'Upper Confidence (Supply)',
+                            data: [...new Array(historicalYears.length).fill(null), 
+                                   ...supplyForecast.map(d => d.upperBound)],
+                            borderColor: '#667eea',
+                            borderWidth: 1,
+                            borderDash: [2, 2],
+                            fill: '+1',
+                            backgroundColor: 'rgba(102, 126, 234, 0.1)'
+                        },
+                        {
+                            label: 'Lower Confidence (Supply)',
+                            data: [...new Array(historicalYears.length).fill(null), 
+                                   ...supplyForecast.map(d => d.lowerBound)],
+                            borderColor: '#667eea',
+                            borderWidth: 1,
+                            borderDash: [2, 2],
+                            fill: false
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    interaction: {
+                        mode: 'index',
+                        intersect: false
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                usePointStyle: true,
+                                boxWidth: 10
+                            }
+                        },
+                        title: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: value => formatNumber(value)
+                            },
+                            title: {
+                                display: true,
+                                text: 'Tablets',
+                                font: { weight: 'bold' }
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Year',
+                                font: { weight: 'bold' }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function renderGapScenario() {
+            const ctx = document.getElementById('gapScenarioChart').getContext('2d');
+            
+            const gaps = combined.forecast.map(f => f.projectedGap);
+            const years = combined.forecast.map(f => f.year);
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: years,
+                    datasets: [{
+                        label: 'Projected Supply Gap',
+                        data: gaps,
+                        backgroundColor: gaps.map(g => g > 0 ? 'rgba(220, 53, 69, 0.7)' : 'rgba(40, 167, 69, 0.7)'),
+                        borderColor: gaps.map(g => g > 0 ? '#DC3545' : '#28A745'),
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: (context) => {
+                                    const value = context.parsed.y;
+                                    return value > 0 
+                                        ? `Gap: ${formatNumber(value)} (deficit)` 
+                                        : `Surplus: ${formatNumber(Math.abs(value))}`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            ticks: {
+                                callback: value => formatNumber(value)
+                            },
+                            title: {
+                                display: true,
+                                text: 'Tablets Gap',
+                                font: { weight: 'bold' }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function renderForecastTable() {
+            const rows = combined.forecast.map(f => {
+                const adequacy = parseFloat(f.projectedAdequacy);
+                const status = adequacy >= 90 ? 'badge-success' : adequacy >= 75 ? 'badge-warning' : 'badge-danger';
+                const recommendation = adequacy >= 90 
+                    ? '✓ Adequate supply' 
+                    : adequacy >= 75 
+                        ? '⚠️ Monitor closely' 
+                        : '🔴 Increase procurement';
+
+                return `
+                    <tr>
+                        <td><strong>${f.year}</strong></td>
+                        <td>${formatNumber(f.demandForecast)}</td>
+                        <td>${formatNumber(f.supplyForecast)}</td>
+                        <td style="color: ${f.projectedGap > 0 ? '#DC3545' : '#28A745'}">
+                            ${f.projectedGap > 0 ? '-' : '+'}${formatNumber(Math.abs(f.projectedGap))}
+                        </td>
+                        <td>
+                            <span class="badge ${status}">${f.projectedAdequacy}%</span>
+                        </td>
+                        <td>
+                            <div class="confidence-band">
+                                ${formatNumber(supplyForecast[combined.forecast.indexOf(f)].lowerBound)} - 
+                                ${formatNumber(supplyForecast[combined.forecast.indexOf(f)].upperBound)}
+                            </div>
+                        </td>
+                        <td>${recommendation}</td>
+                    </tr>
+                `;
+            }).join('');
+
+            document.getElementById('forecastTableBody').innerHTML = rows;
+        }
+
+        function renderAccuracyMetrics() {
+            const avgAdequacy = combined.forecast.reduce((sum, f) => 
+                sum + parseFloat(f.projectedAdequacy), 0
+            ) / combined.forecast.length;
+
+            const totalGap = combined.forecast.reduce((sum, f) => sum + f.projectedGap, 0);
+            
+            document.getElementById('accuracyMetrics').innerHTML = `
+                <div class="metric-row">
+                    <span class="metric-label">Model:</span>
+                    <span class="metric-value">ARIMA(1,1,1)</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">Training Period:</span>
+                    <span class="metric-value">2010-2025</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">Forecast Period:</span>
+                    <span class="metric-value">2025-2027</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">Avg Projected Adequacy:</span>
+                    <span class="metric-value">${avgAdequacy.toFixed(1)}%</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">3-Year Cumulative Gap:</span>
+                    <span class="metric-value" style="color: ${totalGap > 0 ? '#DC3545' : '#28A745'}">
+                        ${totalGap > 0 ? '-' : '+'}${formatNumber(Math.abs(totalGap))}
+                    </span>
+                </div>
+                <div class="confidence-band" style="margin-top: 1rem;">
+                    <strong>Confidence Interval:</strong> ±15% based on historical variance in procurement patterns
+                </div>
+            `;
+        }
+
+        function renderRecommendations() {
+            let recommendations = '<ul style="margin: 1rem 0; line-height: 1.8;">';
+
+            combined.forecast.forEach((f, idx) => {
+                const adequacy = parseFloat(f.projectedAdequacy);
+                
+                if (adequacy < 75) {
+                    recommendations += `
+                        <li><strong>${f.year}:</strong> Critical gap of ${formatNumber(f.projectedGap)} tablets. 
+                        Recommend increasing procurement by ${((100/adequacy - 1) * 100).toFixed(0)}% to meet demand.</li>
+                    `;
+                } else if (adequacy < 90) {
+                    recommendations += `
+                        <li><strong>${f.year}:</strong> Moderate supply adequacy (${f.projectedAdequacy}%). 
+                        Consider buffer stock to maintain 90%+ coverage.</li>
+                    `;
+                } else {
+                    recommendations += `
+                        <li><strong>${f.year}:</strong> Supply forecast meets demand projections (${f.projectedAdequacy}% adequacy). 
+                        Maintain current procurement trajectory.</li>
+                    `;
+                }
+            });
+
+            recommendations += '</ul>';
+            
+            recommendations += `
+                <div style="margin-top: 1rem; padding: 1rem; background: rgba(255,255,255,0.1); border-radius: 4px;">
+                    <strong>Key Strategic Actions:</strong>
+                    <ol style="margin: 0.5rem 0; line-height: 1.8;">
+                        <li>Diversify procurement sources to reduce lead time variability</li>
+                        <li>Establish buffer stock equivalent to 15% annual demand</li>
+                        <li>Implement quarterly demand forecasting updates</li>
+                        <li>Strengthen cold chain and distribution infrastructure in high-burden states</li>
+                        <li>Conduct mid-year review of ARIMA model accuracy and recalibrate if needed</li>
+                    </ol>
+                </div>
+            `;
+
+            document.getElementById('recommendations').innerHTML = recommendations;
+        }
+
+        function formatNumber(num) {
+            if (!num) return '0';
+            return (num / 1000000).toFixed(1) + 'M';
+        }
+
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>

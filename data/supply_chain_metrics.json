@@ -1,0 +1,72 @@
+{
+  "totalPOsDelivered": 22,
+  "totalTabletsSupplied": 338679000,
+  "avgLeadTime": 143,
+  "minLeadTime": 96,
+  "maxLeadTime": 231,
+  "recent3YearsSupply": 77616000,
+  "recent3YearsDemand": 150900790,
+  "ordersInTransit": 1,
+  "years2020_2024": [
+    {
+      "year": 2020,
+      "demandTablets": 40575104.0,
+      "popReq": 17444158.0,
+      "popTreated": 9423502.0,
+      "avgCoverage": 34.02085271317829,
+      "supplyTablets": 38205000,
+      "avgLeadTime": 133.0,
+      "supplyGap": 2370104.0,
+      "supplyAdequacy": 94.16,
+      "coverageGap": 8020656.0
+    },
+    {
+      "year": 2021,
+      "demandTablets": 42184855.0,
+      "popReq": 18284721.0,
+      "popTreated": 1084314.0,
+      "avgCoverage": 4.763733850129199,
+      "supplyTablets": 11115000,
+      "avgLeadTime": 231.0,
+      "supplyGap": 31069855.0,
+      "supplyAdequacy": 26.35,
+      "coverageGap": 17200407.0
+    },
+    {
+      "year": 2022,
+      "demandTablets": 65086235.0,
+      "popReq": 25838469.0,
+      "popTreated": 3243436.0,
+      "avgCoverage": 10.975542635658915,
+      "supplyTablets": 37260000,
+      "avgLeadTime": 153.5,
+      "supplyGap": 27826235.0,
+      "supplyAdequacy": 57.25,
+      "coverageGap": 22595033.0
+    },
+    {
+      "year": 2023,
+      "demandTablets": 50929525.0,
+      "popReq": 17714682.0,
+      "popTreated": 12426891.0,
+      "avgCoverage": 34.919444444444444,
+      "supplyTablets": 5643000,
+      "avgLeadTime": 102.0,
+      "supplyGap": 45286525.0,
+      "supplyAdequacy": 11.08,
+      "coverageGap": 5287791.0
+    },
+    {
+      "year": 2024,
+      "demandTablets": 34885030.0,
+      "popReq": 12133997.0,
+      "popTreated": 9454230.0,
+      "avgCoverage": 29.009754521963824,
+      "supplyTablets": 34713000,
+      "avgLeadTime": 147.0,
+      "supplyGap": 172030.0,
+      "supplyAdequacy": 99.51,
+      "coverageGap": 2679767.0
+    }
+  ]
+}
