@@ -6,7 +6,7 @@
 
 ## 🎯 Overview
 
-This platform provides comprehensive supply chain analytics and forecasting for Nigeria's schistosomiasis control programme, featuring:
+This platform provides supply chain analytics for Nigeria's schistosomiasis control programme, featuring:
 
 <!-- - **ARIMA Forecasting**: Predictive modeling of future supply needs (2025-2027) -->
 - **Supply-Demand Matching**: Real-time integration of procurement and treatment data
